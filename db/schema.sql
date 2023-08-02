@@ -27,10 +27,10 @@ CREATE TABLE employee (
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role INT,
-    -- manager INT,
+    manager INT,
     FOREIGN KEY (role)
     REFERENCES role(id)
     -- TODO manager key stuff
     -- FOREIGN KEY (manager)
-    -- REFERENCES manager(id)
+    -- REFERENCES employee(id)
 );
