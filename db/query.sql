@@ -1,12 +1,7 @@
-SELECT *
+
+SELECT role.title AS title, role.salary AS salary, department.name AS department
 FROM role
 JOIN department ON role.department = department.id;
-
-SELECT role.name AS role_name, department.name AS department_name
-FROM role
-JOIN department ON role.department = department.id
-
-
 
 
 

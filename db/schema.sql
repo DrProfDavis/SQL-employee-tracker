@@ -19,6 +19,7 @@ CREATE TABLE role (
     department INT,
     FOREIGN KEY (department)
     REFERENCES department(id)
+    ON DELETE SET NULL
 );
 
 -- Creates the employee table
@@ -27,7 +28,7 @@ CREATE TABLE employee (
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role INT,
-    manager INT,
+    -- manager INT,
     FOREIGN KEY (role)
     REFERENCES role(id)
     -- TODO manager key stuff
