@@ -15,3 +15,14 @@ VALUES  ('Sales Lead', '120000', 1),
         ('Accountant', '125000', 3),
         ('Legal Team Lead', '250000', 4),
         ('Lawyer', '190000', 4);
+
+-- Seeds information into the employee table
+INSERT INTO employee (first_name, last_name)
+VALUES  ('Ben', 'Chilling'),
+        ('Shawn', 'Davis'),
+        ('Ryan', 'Reynolds'),
+        ('Andrew', 'Wilson'),
+        ('Mac', 'Miller'),
+        ('Scooby', 'Doo'),
+        ('Shaggy', 'Too-Dope'),
+        ('Violent', 'Jay');
