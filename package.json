@@ -2,5 +2,16 @@
   "dependencies": {
     "inquirer": "^8.2.4",
     "mysql2": "^3.5.2"
-  }
+  },
+  "name": "sql-employee-tracker",
+  "description": "## DESCRIPTION   Employee tracker made using mysql to easily add and remove employees",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

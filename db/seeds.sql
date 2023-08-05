@@ -17,12 +17,12 @@ VALUES  ('Sales Lead', '120000', 1),
         ('Lawyer', '190000', 4);
 
 -- Seeds information into the employee table
-INSERT INTO employee (first_name, last_name)
-VALUES  ('Ben', 'Chilling'),
-        ('Shawn', 'Davis'),
-        ('Ryan', 'Reynolds'),
-        ('Andrew', 'Wilson'),
-        ('Mac', 'Miller'),
-        ('Scooby', 'Doo'),
-        ('Shaggy', 'Too-Dope'),
-        ('Violent', 'Jay');
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES  ('Ben', 'Chilling', 1, null),
+        ('Shawn', 'Davis', 2, 1),
+        ('Ryan', 'Reynolds', 3, null),
+        ('Andrew', 'Wilson', 4, 3),
+        ('Mac', 'Miller', 5, null),
+        ('Scooby', 'Doo', 6, 5),
+        ('Shaggy', 'Too-Dope', 7, null),
+        ('Violent', 'Jay', 8, 7);

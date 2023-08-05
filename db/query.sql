@@ -1,8 +1,8 @@
-
-SELECT employee.first_name AS first_name, employee.last_name AS last_name, role.title AS title, role.salary AS salary, department.name AS department
+SELECT employee.id AS id, employee.first_name AS first_name, employee.last_name AS last_name, role.title AS title, role.salary AS salary, department.name AS department, CONCAT(manager.first_name,' ',manager.last_name) AS manager
 FROM role
-JOIN department ON role.department = department.id
-JOIN employee ON role.id = employee.id;
+LEFT JOIN department ON role.department = department.id
+LEFT JOIN employee ON role.id = employee.role_id
+LEFT JOIN employee manager ON employee.manager_id = manager.id
 
 
 
