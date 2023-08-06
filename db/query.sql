@@ -6,7 +6,12 @@
 -- LEFT JOIN employee manager ON employee.manager_id = manager.id
 
 
--- Query for viewAllDepartments
-SELECT department.id AS id, department.name AS department
-FROM department
+-- -- Query for viewAllDepartments
+-- SELECT department.id AS id, department.name AS department
+-- FROM department
 
+
+-- Query for viewAllRoles
+SELECT role.id AS id, role.title AS title, department.name AS department, role.salary AS salary
+FROM role
+LEFT JOIN department ON role.department = department.id

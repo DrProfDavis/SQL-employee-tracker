@@ -24,6 +24,18 @@ function viewAllDepartments() {
     });
 }
 
+// Displays table of all roles and salary
+function viewAllRoles() {
+    const sql = `SELECT role.id AS id, role.title AS title, department.name AS department, role.salary AS salary
+    FROM role
+    LEFT JOIN department ON role.department = department.id`;
+
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        console.table(result)
+    });
+}
+
 // Displays table of all employees and their information
 function viewAllEmployees() {
     const sql = `SELECT employee.id AS id, employee.first_name AS first_name, employee.last_name AS last_name, role.title AS title, role.salary AS salary, department.name AS department, CONCAT(manager.first_name,' ',manager.last_name) AS manager
@@ -62,7 +74,7 @@ function init() {
                 viewAllDepartments();
                 break;
             case "view all roles":
-                //code to be executed
+                viewAllRoles();
                 break;
             case "view all employees":
                 viewAllEmployees();
