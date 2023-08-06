@@ -13,7 +13,18 @@ const db = mysql.createConnection(
     console.log(`Connected to the tracker_db database.`)
 );
 
-// Create a movie
+// Displays table of all departments
+function viewAllDepartments() {
+    const sql = `SELECT department.id AS id, department.name AS department
+    FROM department`;
+
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        console.table(result)
+    });
+}
+
+// Displays table of all employees and their information
 function viewAllEmployees() {
     const sql = `SELECT employee.id AS id, employee.first_name AS first_name, employee.last_name AS last_name, role.title AS title, role.salary AS salary, department.name AS department, CONCAT(manager.first_name,' ',manager.last_name) AS manager
     FROM role
@@ -48,13 +59,12 @@ function init() {
         console.log(response)
         switch(response.choice){
             case "view all departments":
-                //code to be executed
+                viewAllDepartments();
                 break;
             case "view all roles":
                 //code to be executed
                 break;
             case "view all employees":
-                console.log('You chose view all employees');
                 viewAllEmployees();
                 break;
             case "add a department":
