@@ -46,7 +46,7 @@ function init() {
         }
     ]) .then(response => {
         console.log(response)
-        switch(response){
+        switch(response.choice){
             case "view all departments":
                 //code to be executed
                 break;
@@ -54,7 +54,8 @@ function init() {
                 //code to be executed
                 break;
             case "view all employees":
-                //code to be executed
+                console.log('You chose view all employees');
+                viewAllEmployees();
                 break;
             case "add a department":
                 //code to be executed
@@ -69,8 +70,6 @@ function init() {
                 //code to be executed
                 break;
         }
-        // if else or switch statement
-        // if you choose "update an employee role"
     })
 
     // viewAllEmployees()
