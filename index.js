@@ -110,6 +110,42 @@ const addRole = () => {
     })
 };
 
+const addEmployee = () => {
+    db.query("SELECT * FROM department", (err, deptResult) => {
+        if (err) throw err;
+
+        const departments = deptResult.map(({ name, id }) => ({ name: name, value: id }));
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "title",
+                message: "What is the name of the role you are adding?"
+            },
+            {
+                type: "input",
+                name: "salary",
+                message: "What is the salary of this role?"
+            },
+            {
+                type: "list",
+                name: "dept",
+                message: "Which department is this role in?",
+                choices: departments
+            }
+        ])
+        .then(answer => {
+            const query = `INSERT INTO role (title, salary, department)
+            VALUES (?, ?, ?)`;
+            
+            db.query(query, [answer.title, answer.salary, answer.dept], (err, result) => {
+                if (err) throw err;
+                viewAllRoles();
+                init();
+            });
+        })
+    })
+};
+
 function init() {
     inquirer.prompt([
         {
@@ -145,7 +181,7 @@ function init() {
                 addRole();
                 break;
             case "add an employee":
-                //code to be executed
+                addEmployee();
                 break;
             case "update an employee role":
                 //code to be executed
