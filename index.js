@@ -63,7 +63,6 @@ const addDepartment = () => {
             },
         ])
         .then((response) => {
-            console.log(response);
             const sql = `INSERT INTO department (name)
             VALUES ('${response.addDepartment}')`;
     db.query(sql, (err, result) => {
@@ -153,8 +152,6 @@ const addEmployee = () => {
 
                     db.query(query, [answer.first_name, answer.last_name, answer.role, answer.manager], (err, res) => {
                         if (err) throw err;
-                        console.log(`Employee ${answer.first_name} ${answer.last_name} successfully added!`)
-
                         init();
                 })
             })
@@ -220,7 +217,6 @@ function init() {
             ]
         }
     ]) .then(response => {
-        console.log(response)
         switch(response.choice){
             case "view all departments":
                 viewAllDepartments();
@@ -245,7 +241,5 @@ function init() {
                 break;
         }
     })
-
-    // viewAllEmployees()
 }
 init()
