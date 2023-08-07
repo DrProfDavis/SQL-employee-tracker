@@ -21,6 +21,7 @@ function viewAllDepartments() {
     db.query(sql, (err, result) => {
         if (err) throw err;
         console.table(result)
+        init();
     });
 }
 
@@ -33,6 +34,7 @@ function viewAllRoles() {
     db.query(sql, (err, result) => {
         if (err) throw err;
         console.table(result)
+        init();
     });
 }
 
@@ -47,9 +49,66 @@ function viewAllEmployees() {
     db.query(sql, (err, result) => {
         if (err) throw err;
         console.table(result)
+        init();
     });
 }
 
+const addDepartment = () => {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What is the name of the department?",
+                name: "addDepartment",
+            },
+        ])
+        .then((response) => {
+            console.log(response);
+            const sql = `INSERT INTO department (name)
+            VALUES ('${response.addDepartment}')`;
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        viewAllDepartments();
+        init();
+        });
+    });
+};
+
+const addRole = () => {
+    db.query("SELECT * FROM department", (err, deptResult) => {
+        if (err) throw err;
+
+        const departments = deptResult.map(({ name, id }) => ({ name: name, value: id }));
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "title",
+                message: "What is the name of the role you are adding?"
+            },
+            {
+                type: "input",
+                name: "salary",
+                message: "What is the salary of this role?"
+            },
+            {
+                type: "list",
+                name: "dept",
+                message: "Which department is this role in?",
+                choices: departments
+            }
+        ])
+        .then(answer => {
+            const query = `INSERT INTO role (title, salary, department)
+            VALUES (?, ?, ?)`;
+            
+            db.query(query, [answer.title, answer.salary, answer.dept], (err, result) => {
+                if (err) throw err;
+                viewAllRoles();
+                init();
+            });
+        })
+    })
+};
 
 function init() {
     inquirer.prompt([
@@ -80,12 +139,12 @@ function init() {
                 viewAllEmployees();
                 break;
             case "add a department":
-                //code to be executed
+                addDepartment();
                 break;
             case "add a role":
-                //code to be executed
+                addRole();
                 break;
-            case "view all employees":
+            case "add an employee":
                 //code to be executed
                 break;
             case "update an employee role":
